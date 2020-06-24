@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    val MainServer = "https://api.github.com/"
+    val MainServer = "https://dl.dropboxusercontent.com/"
 
     val retrofitClient: Retrofit.Builder by lazy {
 

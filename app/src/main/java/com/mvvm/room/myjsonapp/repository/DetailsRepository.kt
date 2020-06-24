@@ -8,13 +8,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CanadaDetailsRepository : Callback<CanadaTableModel> {
+class DetailsRepository : Callback<CanadaTableModel> {
 
     lateinit var canadaDetailsLiveData: MutableLiveData<CanadaTableModel>
 
-    fun getDataFromApi(context: Context) {
+    fun getDataFromApi(context: Context, liveData: MutableLiveData<CanadaTableModel>)
+            : MutableLiveData<CanadaTableModel> {
 
-        val call = RetrofitClient.apiInterface
+        canadaDetailsLiveData = liveData
+
+        val call = RetrofitClient.apiInterface.getDetails()
+        call.enqueue(this)
+
+        return canadaDetailsLiveData
     }
 
     override fun onFailure(call: Call<CanadaTableModel>, t: Throwable) {
