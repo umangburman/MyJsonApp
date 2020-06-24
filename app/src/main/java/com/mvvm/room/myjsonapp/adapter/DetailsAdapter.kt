@@ -32,8 +32,13 @@ class DetailsAdapter constructor(val context: Context, val userList: List<RowsDa
 
         val detailsData: RowsData = userList.get(position)
 
-        holder.lblTitle.text = detailsData.title?.let { it -> "- - -" }
-        holder.lblDescription.text = detailsData.description?.let { it -> "- - -" }
+        val detailsD = detailsData.title
+
+        if (!detailsData.title.isNullOrBlank())
+            holder.lblTitle.text = detailsData.title else holder.lblTitle.text = "- - -"
+        if (!detailsData.description.isNullOrEmpty())
+            holder.lblDescription.text = detailsData.description
+        else holder.lblDescription.text = "- - -"
 
         val url = detailsData.imageHref
         Glide.with(context)
