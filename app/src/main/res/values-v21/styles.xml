@@ -51,6 +51,12 @@
         <item name="android:paddingLeft">@dimen/toolbar_horizontal_padding</item>
         <item name="android:paddingRight">@dimen/toolbar_horizontal_padding</item>
         <item name="contentInsetStart">@dimen/first_keyline</item>
+        <item name="titleTextColor">@color/White</item>
+        <item name="titleTextAppearance">@style/ToolbarTextSize</item>
+    </style>
+
+    <style name="ToolbarTextSize" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="CustomToolbarButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
@@ -70,4 +76,5 @@
     <style name="CustomModeButtonStyle" parent="Widget.AppCompat.ActionButton.CloseMode">
         <item name="android:layout_marginRight">20dp</item>
     </style>
+
 </resources>

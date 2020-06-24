@@ -2,10 +2,10 @@ package com.mvvm.room.myjsonapp.model
 
 import androidx.room.Entity
 
-data class CanadaTableModel(
+data class TableModel(
 
     val title: String? = null,
-    val rows: String? = null
+    val rows: List<RowsData>? = null
 )
 
 @Entity(tableName = "Details")

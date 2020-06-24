@@ -11,4 +11,52 @@
         <item name="android:actionMenuTextColor">@color/White</item>
     </style>
 
+    <!-- Overlays -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Toolbar Theme -->
+    <style name="myToolbarTHeme">
+        <!-- Style For Toolbar -->
+        <item name="toolbarStyle">@style/CustomToolbarStyle</item>
+        <item name="toolbarNavigationButtonStyle">@style/CustomToolbarButtonStyle</item>
+        <item name="actionOverflowButtonStyle">@style/CustomOverflowButton</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/CustomActionMode</item>
+        <item name="actionModeCloseButtonStyle">@style/CustomModeButtonStyle</item>
+    </style>
+
+    <!-- Custom Toolbar -->
+    <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="maxButtonHeight">48dp</item>
+        <item name="android:paddingLeft">@dimen/toolbar_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/toolbar_horizontal_padding</item>
+        <item name="contentInsetStart">@dimen/first_keyline</item>
+        <item name="titleTextColor">@color/White</item>
+        <item name="titleTextAppearance">@style/ToolbarTextSize</item>
+    </style>
+
+    <style name="ToolbarTextSize" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CustomToolbarButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">48dp</item>
+    </style>
+
+    <style name="CustomOverflowButton" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+    </style>
+
+    <style name="CustomActionMode" parent="Widget.AppCompat.ActionMode">
+        <item name="android:paddingLeft">@dimen/toolbar_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/toolbar_horizontal_padding</item>
+    </style>
+
+    <style name="CustomModeButtonStyle" parent="Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+
 </resources>
