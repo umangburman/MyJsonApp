@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Json App</string>
+    <string name="no_data">These is no data found. Please try again.</string>
 </resources>
