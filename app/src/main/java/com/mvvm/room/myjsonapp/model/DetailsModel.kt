@@ -1,6 +1,6 @@
 package com.mvvm.room.myjsonapp.model
 
-
+// Model class to monitor for Responses from APIs
 data class TableModel(
 
     val title: String? = null,

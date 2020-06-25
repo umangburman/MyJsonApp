@@ -13,11 +13,13 @@ class DetailsViewModel : ViewModel() {
 
     lateinit var detailsRepository: DetailsRepository
 
+    // Gets data from the API and Passes onto LiveData
     fun getDataFromApi(context: Context): MutableLiveData<TableModel> {
 
         detailsRepository = DetailsRepository()
         detailsLiveData = MutableLiveData()
 
+        // Check for Internet Connectivity
         if (Connectivity.isOnline(context)) {
             detailsLiveData = detailsRepository.getDataFromApi(context, detailsLiveData)
         } else {

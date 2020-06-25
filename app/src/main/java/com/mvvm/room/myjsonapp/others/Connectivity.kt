@@ -7,6 +7,7 @@ import android.os.Build
 
 class Connectivity {
 
+    // Returns whether or not the network is available
     companion object {
 
         fun isOnline(context: Context): Boolean {

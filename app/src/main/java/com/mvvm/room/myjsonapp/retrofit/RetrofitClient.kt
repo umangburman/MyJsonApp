@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+// Singleton Retrofit Client for API Calls
 object RetrofitClient {
 
     val MainServer = "https://dl.dropboxusercontent.com/"

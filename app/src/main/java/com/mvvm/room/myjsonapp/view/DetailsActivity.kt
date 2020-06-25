@@ -29,6 +29,7 @@ class DetailsActivity : AppCompatActivity() {
 
         context = this@DetailsActivity
 
+        // Array List to pass data to the Adapter
         detailsList = ArrayList()
 
         setSupportActionBar(toolbar)
@@ -36,14 +37,17 @@ class DetailsActivity : AppCompatActivity() {
             title = "- - -"
         }
 
+        // RecyclerView Attributes
         recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
 
+        // ViewModel Declaration
         detailsViewModel = ViewModelProvider(this)
             .get(DetailsViewModel::class.java)
 
+        // ViewModel Observer
         detailsViewModel.getDataFromApi(context).observe(this, Observer { tableModel ->
 
             if (tableModel == null) {
@@ -55,11 +59,13 @@ class DetailsActivity : AppCompatActivity() {
                     title = tableModel.title
                 }
 
+                // Display No Data Found on the Adapter
                 if (detailsList == null) {
                     recyclerView.visibility = View.GONE
                     noDataConstraint.visibility = View.VISIBLE
                 } else {
 
+                    // Eleminate null items from the response
                     for (items in tableModel.rows!!) {
                         if (!items.title.isNullOrBlank() &&
                             !items.description.isNullOrBlank() &&
@@ -69,6 +75,7 @@ class DetailsActivity : AppCompatActivity() {
                         }
                     }
 
+                    // Apply the Adapter
                     val detailsAdapter = DetailsAdapter(context, detailsList!!)
                     recyclerView.apply {
                         adapter = detailsAdapter

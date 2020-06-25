@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.list_item_details.view.*
 class DetailsAdapter constructor(val context: Context, val userList: ArrayList<RowsData>) :
     RecyclerView.Adapter<DetailsAdapter.DetailsHolder>() {
 
+    // Inialization of the List objects
     class DetailsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var lblTitle = itemView.lblTitleAnswer
@@ -20,6 +21,7 @@ class DetailsAdapter constructor(val context: Context, val userList: ArrayList<R
         var imgReference = itemView.imgHref
     }
 
+    // Creating of resources on the UI
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsHolder {
 
         val view = LayoutInflater.from(parent.context)
@@ -28,6 +30,7 @@ class DetailsAdapter constructor(val context: Context, val userList: ArrayList<R
         return DetailsHolder(view)
     }
 
+    // Assign Data to each row of the RecyclerView
     override fun onBindViewHolder(holder: DetailsHolder, position: Int) {
 
         val detailsData: RowsData = userList.get(position)
@@ -49,5 +52,6 @@ class DetailsAdapter constructor(val context: Context, val userList: ArrayList<R
         } else holder.imgReference.visibility = View.GONE
     }
 
+    // Returns the count of the items
     override fun getItemCount(): Int = userList.size
 }
