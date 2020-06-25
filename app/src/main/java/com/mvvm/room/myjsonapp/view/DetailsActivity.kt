@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.room.myjsonapp.R
 import com.mvvm.room.myjsonapp.adapter.DetailsAdapter
+import com.mvvm.room.myjsonapp.model.RowsData
 import com.mvvm.room.myjsonapp.viewmodel.DetailsViewModel
 import kotlinx.android.synthetic.main.activity_details.*
+
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -19,11 +21,15 @@ class DetailsActivity : AppCompatActivity() {
 
     lateinit var detailsViewModel: DetailsViewModel
 
+    var detailsList: ArrayList<RowsData>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
         context = this@DetailsActivity
+
+        detailsList = ArrayList()
 
         setSupportActionBar(toolbar)
         supportActionBar.apply {
@@ -49,9 +55,24 @@ class DetailsActivity : AppCompatActivity() {
                     title = tableModel.title
                 }
 
-                val detailsAdapter = tableModel.rows?.let { it -> DetailsAdapter(context, it) }
-                recyclerView.apply {
-                    adapter = detailsAdapter
+                if (detailsList == null) {
+                    recyclerView.visibility = View.GONE
+                    noDataConstraint.visibility = View.VISIBLE
+                } else {
+
+                    for (items in tableModel.rows!!) {
+                        if (!items.title.isNullOrBlank() &&
+                            !items.description.isNullOrBlank() &&
+                            !items.imageHref.isNullOrBlank()
+                        ) {
+                            detailsList!!.add(items)
+                        }
+                    }
+
+                    val detailsAdapter = DetailsAdapter(context, detailsList!!)
+                    recyclerView.apply {
+                        adapter = detailsAdapter
+                    }
                 }
             }
 

@@ -10,7 +10,7 @@ import com.mvvm.room.myjsonapp.R
 import com.mvvm.room.myjsonapp.model.RowsData
 import kotlinx.android.synthetic.main.list_item_details.view.*
 
-class DetailsAdapter constructor(val context: Context, val userList: List<RowsData>) :
+class DetailsAdapter constructor(val context: Context, val userList: ArrayList<RowsData>) :
     RecyclerView.Adapter<DetailsAdapter.DetailsHolder>() {
 
     class DetailsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,21 +32,21 @@ class DetailsAdapter constructor(val context: Context, val userList: List<RowsDa
 
         val detailsData: RowsData = userList.get(position)
 
-        val detailsD = detailsData.title
-
         if (!detailsData.title.isNullOrBlank())
-            holder.lblTitle.text = detailsData.title else holder.lblTitle.text = "- - -"
+            holder.lblTitle.text = detailsData.title else holder.lblTitle.visibility = View.GONE
         if (!detailsData.description.isNullOrEmpty())
             holder.lblDescription.text = detailsData.description
-        else holder.lblDescription.text = "- - -"
+        else holder.lblDescription.visibility = View.GONE
 
-        val url = detailsData.imageHref
-        Glide.with(context)
-            .load(url)
-            .centerCrop()
-            .placeholder(R.drawable.ic_loading)
-            .error(R.drawable.ic_no_image_found)
-            .into(holder.imgReference)
+        if (!detailsData.imageHref.isNullOrEmpty()) {
+            val url = detailsData.imageHref
+            Glide.with(context)
+                .load(url)
+                .centerCrop()
+                .placeholder(R.drawable.ic_loading)
+                .error(R.drawable.ic_no_image_found)
+                .into(holder.imgReference)
+        } else holder.imgReference.visibility = View.GONE
     }
 
     override fun getItemCount(): Int = userList.size
