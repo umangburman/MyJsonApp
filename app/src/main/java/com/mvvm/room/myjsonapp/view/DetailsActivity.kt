@@ -23,6 +23,8 @@ class DetailsActivity : AppCompatActivity() {
 
     var detailsList: ArrayList<RowsData>? = null
 
+    var detailsAdapter: DetailsAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -31,6 +33,9 @@ class DetailsActivity : AppCompatActivity() {
 
         // Array List to pass data to the Adapter
         detailsList = ArrayList()
+
+        // Adapter for the Recycler View
+        detailsAdapter = DetailsAdapter(context, detailsList!!)
 
         setSupportActionBar(toolbar)
         supportActionBar.apply {
@@ -46,6 +51,23 @@ class DetailsActivity : AppCompatActivity() {
         // ViewModel Declaration
         detailsViewModel = ViewModelProvider(this)
             .get(DetailsViewModel::class.java)
+
+        // Get Data From Observer View Model
+        getDataFromAPI()
+
+        // Swipe Container
+        swipeContainer.setOnRefreshListener {
+
+            // Get Data From Observer View Model
+            getDataFromAPI()
+        }
+    }
+
+    // Get Data From API
+    fun getDataFromAPI() {
+
+        detailsAdapter!!.clearList()
+        detailsAdapter!!.notifyDataSetChanged()
 
         // ViewModel Observer
         detailsViewModel.getDataFromApi(context).observe(this, Observer { tableModel ->
@@ -76,10 +98,12 @@ class DetailsActivity : AppCompatActivity() {
                     }
 
                     // Apply the Adapter
-                    val detailsAdapter = DetailsAdapter(context, detailsList!!)
                     recyclerView.apply {
                         adapter = detailsAdapter
                     }
+
+                    // Dismiss the Refresh
+                    swipeContainer.isRefreshing = false
                 }
             }
 

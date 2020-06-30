@@ -10,7 +10,7 @@ import com.mvvm.room.myjsonapp.R
 import com.mvvm.room.myjsonapp.model.RowsData
 import kotlinx.android.synthetic.main.list_item_details.view.*
 
-class DetailsAdapter constructor(val context: Context, val userList: ArrayList<RowsData>) :
+class DetailsAdapter constructor(val context: Context, var userList: ArrayList<RowsData>) :
     RecyclerView.Adapter<DetailsAdapter.DetailsHolder>() {
 
     // Inialization of the List objects
@@ -54,4 +54,7 @@ class DetailsAdapter constructor(val context: Context, val userList: ArrayList<R
 
     // Returns the count of the items
     override fun getItemCount(): Int = userList.size
+
+    // Clear List
+    fun clearList() = userList.clear()
 }
